@@ -8,9 +8,17 @@ module.exports = {
 	output: {
 		path: resolvePath('dist'),
 		filename: process.env.NODE_ENV == 'development' ? 'js/bundle.js' : 'js/[name].[contenthash].js',
-		chunkFilename: 'js/[name].[contenthash].js',
 		publicPath: '/',
-		assetModuleFilename: 'images/[hash][ext][query]'
+		assetModuleFilename: 'images/[hash][ext][query]',
+		chunkFilename: (pathData) => {
+			let name = pathData.chunk.name.toLowerCase()
+			const name_index = name.indexOf('-index')
+			if (name_index > -1) {
+				name = name.substring(0, name_index)
+			}
+			pathData.chunk.name = name
+			return 'js/[name].[contenthash].js'
+		}
 	},
 	module: {
 		rules: [

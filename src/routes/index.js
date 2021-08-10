@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { SWRConfig } from 'swr'
+import fetch from '~/utils/fetch'
 import routes from './router'
 import '../less/normal.less'
+
+const fetcher = (url, params, method, data) => fetch(url, params, method, data).then(res => res.data)
 
 export default class extends Component {
   state = { hasError: false }
@@ -33,9 +37,16 @@ export default class extends Component {
       return <h1>Sorry, Something went wrong.</h1>
     }
     return (
-      <Switch>
-        {routes.map((route, index) => this.routeWithSubRoutes(route, index))}
-      </Switch>
+      <SWRConfig
+        value={{
+          refreshInterval: 0,
+          fetcher
+        }}
+      >
+        <Switch>
+          {routes.map((route, index) => this.routeWithSubRoutes(route, index))}
+        </Switch>
+      </SWRConfig>
     )
   }
 }

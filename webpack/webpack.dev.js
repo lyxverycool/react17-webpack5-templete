@@ -11,10 +11,16 @@ const devConfig = {
 		disableHostCheck: true,
 		contentBase: path.join(__dirname, 'dist'),
 		host: "localhost",
-		port: 3000,
+		port: 3001,
 		open: true,
 		hot: true,
 		compress: true,
+		proxy: {
+			'/api': {
+				target: 'http://localhost:3000',
+				secure: false,
+			},
+		},
 	},
 	target: 'web',
 	plugins: [new HotModuleReplacementPlugin(), new ReactRefreshWebpackPlugin()],
