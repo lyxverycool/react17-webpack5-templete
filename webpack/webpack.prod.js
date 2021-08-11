@@ -30,7 +30,15 @@ const prodConfig = {
 	},
 	plugins: [new MiniCssExtractPlugin({
 		filename: 'css/[name].[contenthash:8].css',
-		chunkFilename: 'css/[name].[contenthash:8].css',
+		chunkFilename: (pathData) => {
+			let name = pathData.chunk.name.toLowerCase()
+			const name_index = name.indexOf('-index')
+			if (name_index > -1) {
+				name = name.substring(0, name_index)
+			}
+			pathData.chunk.name = name
+			return 'css/[name].[contenthash:8].css'
+		},
 		ignoreOrder: true,
 	})],
 };

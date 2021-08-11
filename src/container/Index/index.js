@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react'
 import useSWR from 'swr'
 import useTitle from '@/UseTitle'
-import avatarImg from '../../images/avatar.jpg'
 import './style.less'
 
 export default () => {
@@ -10,8 +9,11 @@ export default () => {
   const { data } = useSWR(['/api/list/queryListAll'])
   return (
     <div className="index">
-      测试
-      {/* <img src={avatarImg} alt="" /> */}
+      <div className="lists">
+        <div className="list">11</div>
+        <div className="list">22</div>
+        <div className="list">33</div>
+      </div>
     </div>
   )
 }
