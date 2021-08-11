@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { SWRConfig } from 'swr'
 import fetch from '~/utils/fetch'
+import UserProvider from '~/store'
 import routes from './router'
 import '../less/normal.less'
 
@@ -43,9 +44,11 @@ export default class extends Component {
           fetcher
         }}
       >
-        <Switch>
-          {routes.map((route, index) => this.routeWithSubRoutes(route, index))}
-        </Switch>
+        <UserProvider>
+          <Switch>
+            {routes.map((route, index) => this.routeWithSubRoutes(route, index))}
+          </Switch>
+        </UserProvider>
       </SWRConfig>
     )
   }
