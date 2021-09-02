@@ -1,5 +1,6 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackBar = require('webpackbar');
 const { resolve } = require('path')
 const resolvePath = (relativePath) => resolve(process.cwd(), relativePath)
 
@@ -45,6 +46,9 @@ module.exports = {
 		},
 	},
 	plugins: [
+		new WebpackBar({
+			name: 'webpack5-demo'
+		}),
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
@@ -57,5 +61,5 @@ module.exports = {
 				minifyCSS: true,
 			},
 		}),
-	],
+	]
 };

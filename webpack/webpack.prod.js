@@ -1,4 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { merge } = require('webpack-merge');
 const common = require('./webpack.base');
 
@@ -21,7 +22,7 @@ const prodConfig = {
 			chunks: 'async',
 			cacheGroups: {
 				vendor: {
-					test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
+					test: /[\\/]node_modules[\\/](react|react-dom|react-router|react-router-dom)[\\/]/,
 					name: 'vendor',
 					chunks: 'all',
 				},
@@ -40,7 +41,13 @@ const prodConfig = {
 			return 'css/[name].[contenthash:8].css'
 		},
 		ignoreOrder: true,
-	})],
+	}),
+
+	],
 };
+
+if (process.env.ANALYZER) {
+	prodConfig.plugins.push(new BundleAnalyzerPlugin())
+}
 
 module.exports = merge(common, prodConfig);
