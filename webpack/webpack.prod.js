@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const { merge } = require('webpack-merge');
 const common = require('./webpack.base');
 
@@ -18,6 +19,10 @@ const prodConfig = {
 		runtimeChunk: {
 			'name': 'manifest',
 		},
+		minimize: true,
+    minimizer: [
+			new CssMinimizerPlugin({})
+		],
 		splitChunks: {
 			chunks: 'async',
 			cacheGroups: {

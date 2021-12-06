@@ -13,6 +13,7 @@ export default () => {
       姓名:{user.name} 年龄：{user.age}
       <a onClick={() => resetUser({ age: 22 })}>切换年龄</a>
       <img src={avatarImg} alt="" />
+      <img src={require('../../images/avatar.jpg')} alt="" />
     </div>
   )
 }

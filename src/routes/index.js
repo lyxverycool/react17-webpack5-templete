@@ -40,7 +40,8 @@ export default class extends Component {
     return (
       <SWRConfig
         value={{
-          refreshInterval: 0,
+          revalidateOnFocus: false,
+          shouldRetryOnError: false,
           fetcher
         }}
       >
