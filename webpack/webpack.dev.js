@@ -6,6 +6,9 @@ const path = require('path');
 
 const devConfig = {
 	mode: 'development',
+	cache: {
+    type: 'memory'
+	},
 	devServer: {
 		historyApiFallback: true,
 		disableHostCheck: true,

@@ -7,6 +7,13 @@ const common = require('./webpack.base');
 const prodConfig = {
 	mode: 'production',
 	devtool: 'eval',
+	cache: {
+    type: 'filesystem',
+    buildDependencies: {
+      config: [__filename]
+    },
+    version: 'new_version'
+	},
 	module: {
 		rules: [
 			{
