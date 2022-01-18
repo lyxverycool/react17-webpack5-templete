@@ -11,6 +11,7 @@ module.exports = {
 		publicPath: '/',
 		assetModuleFilename: 'images/[hash][ext][query]',
 		chunkFilename: (pathData) => {
+			if(!pathData.chunk.name) return 'js/[name].[contenthash].js'
 			let name = pathData.chunk.name.toLowerCase()
 			const name_index = name.indexOf('-index')
 			if (name_index > -1) {
